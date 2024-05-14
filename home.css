@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY STYLES - START */
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: linear-gradient(89.7deg, rgb(0, 0, 0) -10.7%, rgb(53, 92, 125) 88.8%);
+}
+
+.prompt {
+  font-size: 1.5rem;
+  color: white;
+}
+
+input {
+  border: none;
+  outline: 2px solid white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+button {
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+  outline: 2px solid grey;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
+
+/* BODY STYLES - END */
