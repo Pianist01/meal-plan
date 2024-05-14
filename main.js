@@ -1,10 +1,10 @@
 const input = document.querySelector('#input-value');
 
-const container = document.querySelector('#maincontainer');
+export const message = 'HEllo';
 
-const btn = document.querySelector('button');
+export const btn = document.querySelector('button');
 
-btn.addEventListener('click', () => {
+export let event = btn.addEventListener('click', () => {
   const title = document.createElement('h1');
   title.classList.add('head');
   title.textContent = 'Test';
