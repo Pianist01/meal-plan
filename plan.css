@@ -1,9 +1,21 @@
 * {
-  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.container {
+/* GENERAL STYLES - START */
+
+body {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  height: 100px;
+  display: flex;
+  justify-content: center;
 }
 
 p {
