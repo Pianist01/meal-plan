@@ -1,3 +1,3 @@
-import {input, message, btn, event} from './main.js';
+const chooseName = localStorage.getItem('first-name');
 
-console.log(message);
+document.querySelector('#title').textContent = chooseName;
