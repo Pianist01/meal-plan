@@ -6,6 +6,11 @@
 
 /* BODY STYLES - START */
 
+p {
+  font-size: 2rem;
+  color: aqua;
+}
+
 a {
   text-decoration: none;
   color: black;

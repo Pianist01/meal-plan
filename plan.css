@@ -1,0 +1,11 @@
+* {
+  font-size: 2rem;
+}
+
+.container {
+  height: 100vh;
+}
+
+p {
+  color: aquamarine;
+}
