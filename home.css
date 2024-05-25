@@ -4,16 +4,15 @@
   box-sizing: border-box;
 }
 
-/* BODY STYLES - START */
-
-p {
-  font-size: 2rem;
-  color: aqua;
-}
+/* NAME INPUT - START */
 
 a {
   text-decoration: none;
   color: black;
+}
+
+body {
+  background: linear-gradient(89.7deg, rgb(0, 0, 0) -10.7%, rgb(53, 92, 125) 88.8%);
 }
 
 .container {
@@ -23,7 +22,6 @@ a {
   align-items: center;
   justify-content: center;
   gap: 18px;
-  background: linear-gradient(89.7deg, rgb(0, 0, 0) -10.7%, rgb(53, 92, 125) 88.8%);
 }
 
 .prompt {
@@ -48,4 +46,37 @@ button {
   padding: 10px 15px;
 }
 
-/* BODY STYLES - END */
+/* NAME INPUT - END */
+
+/* WEIGHT INPUT - START */
+
+.containertwo {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.weightinfo {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.weight {
+  border: none;
+  outline: 2px solid white;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+.weightbtn {
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+  outline: 2px solid grey;
+  border-radius: 10px;
+  padding: 10px 15px;
+}
