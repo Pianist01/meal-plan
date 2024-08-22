@@ -1,202 +1,79 @@
+// Container for elemnts to display on screen
 const container = document.querySelector('.container');
-const secondContainer = document.querySelector('.containertwo');
-const thirdContainer = document.querySelector('.containerthree');
 
-let firstName = document.getElementById('input-value');
-firstName.style.opacity = '1';
+// Selecting Button
+const button = document.querySelector('.btn-start');
 
-const btn = document.querySelector('button');
-btn.style.opacity = '1';
+// Selecting and hiding input field
+let inputs = document.getElementById('input-value');
+inputs.style.display = 'none';
 
+// Selecting <p> block with question for user
 const nameQuestion = document.querySelector('.prompt');
-nameQuestion.style.opacity = 1;
 
-let count = 0;
+// Variables to track indexes and mouse clicks
+let index = 0;
 
-function updateScreen() {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    count++;
-    if (count === 1) {
-      makeTitle();
-      getWeight();
-    } else if (count === 2) {
-      getHeight();
-    } else if (count === 3) {
-      getAge();
-    } else if (count === 4) {
-      getGoal();
-    } else if (count === 5) {
-      window.location.href = 'plan.html';
-    }
-  });
+let clicks = 0;
+
+let inputIndex = 0;
+
+let personData = [];
+
+// Arrays holding questions for users, and placeholders for input fields
+const promptList = ['empty', 'What\'s Your Name?', 'How Much Do You Weigh?', 'How Tall Are You?', 'How Old Are You?', 'Want To Gain Or Lose Weight?'];
+
+const inputText = ['empty', 'Papasote', '420lbs', '4\'9', '69', 'Lose/Gain'];
+
+
+function displayScreen() {
+    // Function for when button is clicked
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Click counter
+        clicks += 1;
+
+        // Making input field visible again along with changing button class and its text
+        inputs.style.display = 'block';
+        
+        button.classList.remove('.btn-start');
+        button.classList.add('btn-submit');
+        button.textContent = 'Submit';
+
+        // Going through each element in the promptlist array and changing the question given to user after each click
+        index = (index + 1) % promptList.length;
+        nameQuestion.textContent = promptList[index];
+
+        // Once the button is clicked 7 times, the elements are hidden, the data is stored, and user is taken to next page
+        if (clicks === 7) {
+            button.disabled = true;
+            nameQuestion.style.display = 'none';
+            inputs.style.display = 'none';
+            button.style.display = 'none';
+            window.location.href = 'info.html';
+            let dataString = JSON.stringify(personData);
+            localStorage.setItem('personData', dataString);
+        }
+
+        // Going through each array element in inputIndex after each click
+        inputIndex = (inputIndex + 1) % inputText.length;
+       
+        // After the mouse is clicked once, the data will begin to be pushed into a new array
+        if (clicks > 1) {
+            personData.push(inputs.value);
+            inputs.placeholder = inputText[inputIndex];
+        }
+
+        // After each click, input field is cleared, and elements are appended to container
+        inputs.value = '';
+
+        container.append(inputs);
+        container.insertBefore(inputs, button);
+        console.log(personData);
+        console.log(clicks);
+    });
+
 }
 
-updateScreen();
-
-function makeTitle() {
-
-    let total = '';
-
-    let userName = firstName.value + '\'s Meal Plan';
-    if (firstName.value === 'Eden') {
-      let total = 'Edensito\'s Meal Plan';
-      userName = total;
-    } else if (firstName.value === 'eden') {
-      let total = 'Edensito\'s Meal Plan';
-      userName = total;
-    }
-  
-    localStorage.setItem('first-name', userName);
-
-    // window.location.href = 'plan.html';
-}
-
-// makeTitle();
-
-// function fadeOut() {
-//   btn.addEventListener('click', () => {
-//     if (firstName.style.opacity === '1') {
-//       firstName.style.opacity = '0';
-//       firstName.style.transition = 'opacity 1500ms';
-//     }
-
-//     if (nameQuestion.style.opacity === '1') {
-//       nameQuestion.style.opacity = '0';
-//       nameQuestion.style.transition = 'opacity 1500ms';
-//     }
-
-//     if (btn.style.opacity === '1') {
-//       btn.style.opacity = '0';
-//       btn.style.transition = 'opacity 1500ms';
-//     }
-//   });
-// }
-
-// function fadeIn() {
-//   btn.addEventListener('click', () => {
-//     if (btn.style.opacity === '0') {
-//       btn.style.opacity = '1';
-//       btn.style.transition = 'opacity 1500ms';
-//     }
-//   });
-// } 
-
-// fadeOut();
-
-function getWeight() {
-    nameQuestion.textContent = 'How Much Do You Weigh?';
-    if (nameQuestion.style.opacity === 0) {
-      fadeIn();
-    }
-    firstName.value = '';
-    firstName.placeholder = '500 lbs';
-
-    let userWeight = firstName.value;
-
-    localStorage.setItem('weight-info', userWeight);
-}
-
-// getWeight();
-
-function getHeight() {
-    nameQuestion.textContent = 'How tall are you?';
-    firstName.value = '';
-    firstName.placeholder = '3\'8';
-}
-
-function getAge() {
-  nameQuestion.textContent = 'How old are you?';
-  firstName.value = '';
-  firstName.placeholder = '69';
-}
-
-function getGoal() {
-  nameQuestion.textContent = 'Want to gain or lose weight?';
-  firstName.value = '';
-  firstName.placeholder = 'The choice is up to you!';
-}
-
-// function fadeOut(nameQuestion) {
-//   nameQuestion.classList.add('fade-out');
-//   firstName.classList.add('fade-out');
-// }
-
-// function fadeIn() {
-//   nameQuestion.classList.remove('fade-out');
-//   nameQuestion.classList.add('fade-in');
-//   firstName.classList.remove('face-out');
-//   firstName.classList.add('fade-in');
-// }
-
-// function fadeInNOut() {
-//   let timer = setInterval(function() {
-//     if (nameQuestion.style.opacity === 1) {
-//       fadeOut();
-//       clearInterval(timer);
-//     } else if (nameQuestion.style.opacity === 0) {
-//       fadeIn();
-//       clearInterval(timer);
-//     }
-//   }, 5000);
-// }
-// getHeight();
-
-
-// function getWeight() {
-//   btn.addEventListener('click', (e) => {
-//     e.preventDefault();
-
-//     fadeIn();
-
-//     // const secondContainer = document.querySelector('.containertwo');
-
-//     const userWeight = document.createElement('p');
-//     userWeight.classList.add('weightinfo');
-//     userWeight.textContent = 'How Much Do You Weigh?';
-    
-//     const weight = document.createElement('input');
-//     weight.classList.add('weight');
-//     weight.placeholder = '500lbs';
-
-//     // const submitTwo = document.createElement('button');
-//     // submitTwo.classList.add('weightbtn');
-//     // submitTwo.textContent = 'Submit';
-
-//     container.append(userWeight, weight);
-//     // submitTwo.addEventListener('click', () => {
-
-//     //   let opacityTwo = 1
-//     //   let intervalTwo = setInterval(function() {
-//     //     if (opacityTwo > 0) {
-//     //       opacityTwo -= 0.1;
-//     //       secondContainer.style.opacity = opacityTwo;
-//     //     } else {
-//     //       clearInterval(intervalTwo);
-//     //       secondContainer.style.display = 'none';
-//     //     }
-//     //   }, 50);
-      
-//     //   let weightValue = weight.value + ' lbs';
-
-//     //   localStorage.setItem('weight', weightValue);
-
-//     //   getHeight();
-//     // });
-
-//   });
-// }
-
-// getWeight();
-
-// function getHeight() {
-//   submitTwo.addEventListener('click', (e) => {
-//     e.preventDefault();
-
-//     const userHeight = document.createElement('p');
-//     userHeight.classList.add('heightinfo');
-//     userHeight.textContent = 'How Tall Are You?';
-
-//     thirdContainer.append(userHeight);
-//   });
-// }
+displayScreen();
