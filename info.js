@@ -3,12 +3,16 @@ let getData = localStorage.getItem('personData');
 
 let stringToArray = JSON.parse(getData);
 
-// Selecting container, h1, and p tag
+// Selecting container, h1, p tag, and body
 const container = document.querySelector('.container');
 
 const title = document.createElement('h1');
+title.classList.add('meal-title');
 
 const guide = document.querySelector('.guide');
+guide.classList.add('meal-guide');
+
+const body = document.querySelector('body');
 
 // Button creation
 const guideButton = document.createElement('button');
@@ -24,6 +28,12 @@ let choiceForm= '';
 
 let choiceIndex = -1;
 
+let choice;
+
+let numberOfChoicesToShow;
+
+let limitedChoice;
+
 // Class Object
 class person {
     constructor(name, weight, height, age, goal) {
@@ -36,6 +46,10 @@ class person {
    }
 
 const user = new person(...stringToArray);
+
+if(user.name === 'Eden' || user.name === 'eden') {
+    user.name = 'Ed en sito';
+}
 
 // Arrays holding strings that will be shown to user, along with choices for users down the line
 const infoArray = ['', `It Seems Like You Want To ${user.goal} Weight ${user.name}`, 'We Can Help You With That!', `But First I Need To Know How Much You Want To ${user.goal}`, 'Choose Your Ideal Goal:', 'Great! Let\'s Get This Show On The Road!'];
@@ -64,20 +78,52 @@ function userAdvice() {
         // After 4 clicks, a series of options are generated for the user to choose from
         if (clicks === 4) {
 
+            guideButton.disabled = true;
+
             choiceForm = document.createElement('form');
 
             choiceArray.forEach((option) => {
                 const choiceLabel = document.createElement('label');
                 choiceLabel.textContent = option;
 
-                const choice = document.createElement('input');
+
+                choice = document.createElement('input');
                 choice.classList.add('btn-radio');
                 choice.type = 'radio';
                 choice.name = 'weight';
 
+                console.log(choice);
+
+                // COME BACK TO THIS CODE AFTER STYLING RADIO BUTTON LAYOUT
+
+                // if (user.goal === 'Lose') {
+                //     numberOfChoicesToShow = 4;
+                //     const allChoices = document.querySelectorAll("input[type = 'radio']");
+                //     allChoices.forEach((item, index) => {
+                //         if (index >= numberOfChoicesToShow) {
+                //             item.style.visibility = 'hidden';
+                //             choiceLabel.style.visibility = 'hidden';
+                //             console.log(item[index]);
+                //         }
+                //     });
+                // }
+
+              choice.addEventListener('click', () => {
+                guideButton.disabled = false;
+              });
+            
+
                 choiceForm.append(choiceLabel, choice);
                 container.append(choiceForm);
             });
+        }
+
+        if (clicks === 5) {
+            choiceForm.style.display = 'none';
+        }
+
+        if (clicks === 6) {
+            body.style.background = 'black';
         }
 
         console.log(clicks);
