@@ -55,6 +55,7 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
+    transition: background-color 2s ease;
 }
 
 /* BACKGROUND STYLE END */
@@ -68,12 +69,13 @@ h1, p, label {
 .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr) 4fr 1fr;
 }
 
 .meal-title {
   grid-column-start: 2;
   grid-column-end: 3;
+  justify-self: center;
 }
 
 .meal-guide {
@@ -81,6 +83,8 @@ h1, p, label {
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
+  align-self: center;
+  justify-self: center;
 }
 
 button {
@@ -95,4 +99,29 @@ button {
   grid-row-start: 3;
   grid-row-end: 4;
   width: 30%;
+  justify-self: center;
+}
+
+.form {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  justify-self: end;
+  align-content: center;
+  height: 100%;
+  margin-left: 110px;
+}
+
+.input-label {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn-radio {
+  justify-self: start;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
 }
