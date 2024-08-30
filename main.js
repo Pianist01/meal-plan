@@ -46,14 +46,17 @@ function displayScreen() {
         nameQuestion.textContent = promptList[index];
 
         // Once the button is clicked 7 times, the elements are hidden, the data is stored, and user is taken to next page
-        if (clicks === 7) {
-            button.disabled = true;
+        if (clicks === 6) {
             nameQuestion.style.display = 'none';
             inputs.style.display = 'none';
-            button.style.display = 'none';
-            window.location.href = 'info.html';
+            button.textContent = 'Next';
+
+        }
+
+        if (clicks === 7) {
             let dataString = JSON.stringify(personData);
             localStorage.setItem('personData', dataString);
+            window.location.href = 'info.html';
         }
 
         // Going through each array element in inputIndex after each click
