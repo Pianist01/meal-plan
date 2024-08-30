@@ -56,7 +56,6 @@ if(user.name === 'Eden' || user.name === 'eden') {
 // Arrays holding strings that will be shown to user, along with choices for users down the line
 const infoArray = ['', `It Seems Like You Want To ${user.goal} Weight ${user.name}`, 'We Can Help You With That!', `But First I Need To Know How Much You Want To ${user.goal}`, 'Choose Your Ideal Goal:', 'Great! Let\'s Get This Show On The Road!'];
 const choiceArray = ['Lose 2lbs/Week', 'Lose 1lbs/Week', 'Lose 0.5lbs/Week', 'Maintain Weight', 'Gain 0.5lbs/Week', 'Gain 1lbs/Week', 'Gain 2lbs/Week'];
-const colors = ['#000'];
 
 // Adding title and button to container, along with changing the position of the p tag
 container.append(title, guideButton);
@@ -142,12 +141,22 @@ function userAdvice() {
         if (clicks === 6) {
             title.style.display = 'none';
             guideButton.style.display = 'none';
-            function changeBackground() {
-                body.style.background = colors[colorIndex];
-                // body.style.transition = 'background 2s ease';
-                colorIndex = (colorIndex + 1) % colors.length;
-            }
-            setInterval(changeBackground, 2000);
+            body.style.background = '#000';
+
+            setTimeout(() => {
+                const loadingBox = document.createElement('div');
+                loadingBox.classList.add('loader');
+                body.append(loadingBox);
+
+                setTimeout(() => {
+                    loadingBox.style.opacity = 0;
+                    setTimeout(() => {
+                        loadingBox.style.display = 'none';
+                    }, 0);
+                }, 4000);
+            }, 200);
+
+
         }
 
         console.log(clicks);
