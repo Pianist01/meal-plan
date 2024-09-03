@@ -14,6 +14,8 @@ guide.classList.add('meal-guide');
 
 const body = document.querySelector('body');
 
+const newContainer = document.createElement('div');
+
 // Button creation
 const guideButton = document.createElement('button');
 guideButton.classList.add('btn-guide');
@@ -152,7 +154,15 @@ function userAdvice() {
                     loadingBox.style.opacity = 0;
                     setTimeout(() => {
                         loadingBox.style.display = 'none';
+                        container.style.display = 'none';
                     }, 0);
+                }, 4000);
+
+                setTimeout(() => {
+                    newContainer.classList.add('new-container');
+                    newContainer.style.background = 'linear-gradient(177.9deg, rgb(58, 62, 88) 3.6%, rgb(119, 127, 148) 105.8%)';
+                    body.append(newContainer);
+                    allInfo();
                 }, 4000);
             }, 200);
 
@@ -161,6 +171,39 @@ function userAdvice() {
 
         console.log(clicks);
     });
+}
+
+
+// FUNCTION STILL WORK IN PROGRESS
+function allInfo() {
+    const mainTitle = document.createElement('h1');
+    mainTitle.classList.add('new-title');
+    mainTitle.textContent = `Welcome To Your Meal Plan ${user.name}`;
+
+    const calorieTable = document.createElement('table');
+    const tableHead = document.createElement('thead');
+    const tableHeadData = document.createElement('th');
+    tableHeadData.textContent = `Here's How Many Calories You Need To ${user.goal} Weight`;
+    let tableRow = document.createElement('tr');
+    let tableHeadRow = document.createElement('tr');
+    const tableBody = document.createElement('tbody');
+
+    let tableData = document.createElement('td');
+    tableData.classList.add('cell-data');
+    for(let i = 0; i < 4; i++) {
+        tableData += i;
+    }
+
+    tableRow.append(tableData);
+    tableBody.append(tableRow);
+
+    tableHeadRow.append(tableHeadData);
+    tableHead.append(tableHeadRow);
+
+    calorieTable.append(tableHead, tableBody);
+
+
+    newContainer.append(mainTitle, calorieTable);
 }
 userAdvice();
 console.log(user);
