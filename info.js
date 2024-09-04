@@ -38,6 +38,8 @@ let limitedChoice;
 
 let colorIndex = 0;
 
+let tableResult;
+
 // Class Object
 class person {
     constructor(name, weight, height, age, goal) {
@@ -58,6 +60,18 @@ if(user.name === 'Eden' || user.name === 'eden') {
 // Arrays holding strings that will be shown to user, along with choices for users down the line
 const infoArray = ['', `It Seems Like You Want To ${user.goal} Weight ${user.name}`, 'We Can Help You With That!', `But First I Need To Know How Much You Want To ${user.goal}`, 'Choose Your Ideal Goal:', 'Great! Let\'s Get This Show On The Road!'];
 const choiceArray = ['Lose 2lbs/Week', 'Lose 1lbs/Week', 'Lose 0.5lbs/Week', 'Maintain Weight', 'Gain 0.5lbs/Week', 'Gain 1lbs/Week', 'Gain 2lbs/Week'];
+
+// Calorie Calculation Variables(These will be used later)
+const maintainWeight = user.weight * 15;
+const loseHalf = maintainWeight - 300;
+const losePound = maintainWeight - 500;
+const loseTwoPounds = maintainWeight - 1000;
+const gainHalf = maintainWeight + 300;
+const gainPound = maintainWeight + 500;
+const gainTwoPounds = maintainWeight + 1000;
+
+// Array Holding Variables Above
+const tableArray = [maintainWeight, loseHalf, losePound, loseTwoPounds, gainHalf, gainPound, gainTwoPounds];
 
 // Adding title and button to container, along with changing the position of the p tag
 container.append(title, guideButton);
@@ -190,12 +204,18 @@ function allInfo() {
 
     let tableData = document.createElement('td');
     tableData.classList.add('cell-data');
-    for(let i = 0; i < 4; i++) {
-        tableData += i;
-    }
 
-    tableRow.append(tableData);
-    tableBody.append(tableRow);
+
+    // Going to have to fix this code: 210 - 215
+    tableArray.forEach((cell) => {
+        const tableData = document.createElement('td');
+        tableRow.textContent = cell;
+        tableRow.append(tableData);
+        tableBody.append(tableRow);
+    });
+
+    // tableRow.append(tableData);
+    // tableBody.append(tableRow);
 
     tableHeadRow.append(tableHeadData);
     tableHead.append(tableHeadRow);
