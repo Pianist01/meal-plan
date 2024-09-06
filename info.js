@@ -70,8 +70,9 @@ const gainHalf = maintainWeight + 300;
 const gainPound = maintainWeight + 500;
 const gainTwoPounds = maintainWeight + 1000;
 
-// Array Holding Variables Above
+// Array Holding Variables Above And Titles For Each Cell 
 const tableArray = [maintainWeight, loseHalf, losePound, loseTwoPounds, gainHalf, gainPound, gainTwoPounds];
+const tableArrayTitles = ['Calories To Maintain Weight', 'Calories To Lose 0.5 Pounds/Week', 'Calories To Lose 1 Pound/Week', 'Calories To Lose 2 Pounds/Week', 'Calories To Gain 0.5 Pounds/Week', 'Calories To Gain 1 Pound/Week', 'Calories To Gain 2 Pounds/Week'];
 
 // Adding title and button to container, along with changing the position of the p tag
 container.append(title, guideButton);
@@ -208,9 +209,10 @@ function allInfo() {
 
     // Going to have to fix this code: 210 - 215
     tableArray.forEach((cell) => {
-        const tableData = document.createElement('td');
-        tableRow.textContent = cell;
-        tableRow.append(tableData);
+        const tableCell = document.createElement('td');
+        tableCell.classList.add('cell-data');
+        tableCell.textContent = cell + ' Calories';
+        tableRow.append(tableCell);
         tableBody.append(tableRow);
     });
 
