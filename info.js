@@ -40,6 +40,8 @@ let colorIndex = 0;
 
 let tableResult;
 
+let tableIndex = 0;
+
 // Class Object
 class person {
     constructor(name, weight, height, age, goal) {
@@ -197,9 +199,11 @@ function allInfo() {
 
     const calorieTable = document.createElement('table');
     const tableHead = document.createElement('thead');
+    tableHead.classList.add('table-title');
     const tableHeadData = document.createElement('th');
     tableHeadData.textContent = `Here's How Many Calories You Need To ${user.goal} Weight`;
     let tableRow = document.createElement('tr');
+    tableRow.classList.add('cell-row');
     let tableHeadRow = document.createElement('tr');
     const tableBody = document.createElement('tbody');
 
@@ -208,11 +212,17 @@ function allInfo() {
 
 
     // Going to have to fix this code: 210 - 215
-    tableArray.forEach((cell) => {
+    tableArray.forEach((cell, tableIndex) => {
         const tableCell = document.createElement('td');
-        tableCell.classList.add('cell-data');
+        const cellTitle = document.createElement('td');
+        cellTitle.classList.add(`celltitle-${tableIndex += 1}`);
+        cellTitle.textContent = tableArrayTitles[tableIndex += 1];
+        tableCell.classList.add(`celldata-${tableIndex += 1}`);
         tableCell.textContent = cell + ' Calories';
-        tableRow.append(tableCell);
+        tableBody.classList.add('cell-box');
+        console.log(tableCell.classList);
+        console.log(cellTitle.classList);
+        tableRow.append(cellTitle, tableCell);
         tableBody.append(tableRow);
     });
 
