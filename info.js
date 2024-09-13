@@ -42,6 +42,8 @@ let tableResult;
 
 let tableIndex = 0;
 
+let tableTitleIndex = 0;
+
 // Class Object
 class person {
     constructor(name, weight, height, age, goal) {
@@ -177,7 +179,7 @@ function userAdvice() {
 
                 setTimeout(() => {
                     newContainer.classList.add('new-container');
-                    newContainer.style.background = 'linear-gradient(177.9deg, rgb(58, 62, 88) 3.6%, rgb(119, 127, 148) 105.8%)';
+                    newContainer.style.background = 'linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(125,86,53,1) 73%, rgba(68,118,161,1) 100%)';
                     body.append(newContainer);
                     allInfo();
                 }, 4000);
@@ -201,6 +203,7 @@ function allInfo() {
     const tableHead = document.createElement('thead');
     tableHead.classList.add('table-title');
     const tableHeadData = document.createElement('th');
+    tableHeadData.classList.add('table-h1');
     tableHeadData.textContent = `Here's How Many Calories You Need To ${user.goal} Weight`;
     let tableRow = document.createElement('tr');
     tableRow.classList.add('cell-row');
@@ -214,20 +217,22 @@ function allInfo() {
     // Going to have to fix this code: 210 - 215
     tableArray.forEach((cell, tableIndex) => {
         const tableCell = document.createElement('td');
-        const cellTitle = document.createElement('td');
-        cellTitle.classList.add(`celltitle-${tableIndex += 1}`);
-        cellTitle.textContent = tableArrayTitles[tableIndex += 1];
         tableCell.classList.add(`celldata-${tableIndex += 1}`);
         tableCell.textContent = cell + ' Calories';
         tableBody.classList.add('cell-box');
         console.log(tableCell.classList);
-        console.log(cellTitle.classList);
-        tableRow.append(cellTitle, tableCell);
+        tableRow.append(tableCell);
         tableBody.append(tableRow);
     });
 
-    // tableRow.append(tableData);
-    // tableBody.append(tableRow);
+    tableArrayTitles.forEach((title, tableTitleIndex) => {
+        const cellTitle = document.createElement('td');
+        cellTitle.classList.add(`celltitle-${tableTitleIndex += 1}`);
+        cellTitle.textContent = title;
+        console.log(cellTitle.classList);
+        tableRow.append(cellTitle)
+        tableBody.append(tableRow);
+    });
 
     tableHeadRow.append(tableHeadData);
     tableHead.append(tableHeadRow);
