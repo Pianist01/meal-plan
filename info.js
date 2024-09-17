@@ -44,6 +44,8 @@ let tableIndex = 0;
 
 let tableTitleIndex = 0;
 
+let selectIndex = 0;
+
 // Class Object
 class person {
     constructor(name, weight, height, age, goal) {
@@ -63,7 +65,7 @@ if(user.name === 'Eden' || user.name === 'eden') {
 
 // Arrays holding strings that will be shown to user, along with choices for users down the line
 const infoArray = ['', `It Seems Like You Want To ${user.goal} Weight ${user.name}`, 'We Can Help You With That!', `But First I Need To Know How Much You Want To ${user.goal}`, 'Choose Your Ideal Goal:', 'Great! Let\'s Get This Show On The Road!'];
-const choiceArray = ['Lose 2lbs/Week', 'Lose 1lbs/Week', 'Lose 0.5lbs/Week', 'Maintain Weight', 'Gain 0.5lbs/Week', 'Gain 1lbs/Week', 'Gain 2lbs/Week'];
+const choiceArray = ['--Choose How Much You Want To Lose Or Gain--', 'Lose 2lbs/Week', 'Lose 1lbs/Week', 'Lose 0.5lbs/Week', 'Maintain Weight', 'Gain 0.5lbs/Week', 'Gain 1lbs/Week', 'Gain 2lbs/Week'];
 
 // Calorie Calculation Variables(These will be used later)
 const maintainWeight = user.weight * 15;
@@ -111,41 +113,29 @@ function userAdvice() {
             choiceForm = document.createElement('form');
             choiceForm.classList.add('form');
 
-            choiceArray.forEach((option) => {
-                const choiceLabel = document.createElement('label');
-                choiceLabel.classList.add('input-label');
+            const dropDownChoice = document.createElement('select');
+            dropDownChoice.classList.add('select-form');
+
+            // Need to finish up this piece of code
+            if(user.goal === 'Lose') {
+                choiceArray.filter()
+            }
+
+            choiceArray.forEach((option, selectIndex) => {
+                const choiceLabel = document.createElement('option');
+                choiceLabel.classList.add(`option-${selectIndex}`);
                 choiceLabel.textContent = option;
 
+                console.log(choiceLabel);
 
-
-                choice = document.createElement('input');
-                choice.classList.add('btn-radio');
-                choice.type = 'radio';
-                choice.name = 'weight';
-
-                console.log(choice);
-
-                // COME BACK TO THIS CODE AFTER STYLING RADIO BUTTON LAYOUT
-
-                // if (user.goal === 'Lose') {
-                //     numberOfChoicesToShow = 4;
-                //     const allChoices = document.querySelectorAll("input[type = 'radio']");
-                //     allChoices.forEach((item, index) => {
-                //         if (index >= numberOfChoicesToShow) {
-                //             item.style.visibility = 'hidden';
-                //             choiceLabel.style.visibility = 'hidden';
-                //             console.log(item[index]);
-                //         }
-                //     });
-                // }
-
-              choice.addEventListener('click', () => {
+              dropDownChoice.addEventListener('click', () => {
                 guideButton.disabled = false;
               });
 
+              dropDownChoice.append(choiceLabel);
             
-                choiceLabel.append(choice);
-                choiceForm.append(choiceLabel);
+                // choiceLabel.append(choice);
+                choiceForm.append(dropDownChoice);
                 container.append(choiceForm);
                 container.insertBefore(choiceForm, guideButton);
             });
