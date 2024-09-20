@@ -46,6 +46,10 @@ let tableTitleIndex = 0;
 
 let selectIndex = 0;
 
+let choiceArrayIndex = 0;
+
+let chooseGoal;
+
 // Class Object
 class person {
     constructor(name, weight, height, age, goal) {
@@ -65,7 +69,7 @@ if(user.name === 'Eden' || user.name === 'eden') {
 
 // Arrays holding strings that will be shown to user, along with choices for users down the line
 const infoArray = ['', `It Seems Like You Want To ${user.goal} Weight ${user.name}`, 'We Can Help You With That!', `But First I Need To Know How Much You Want To ${user.goal}`, 'Choose Your Ideal Goal:', 'Great! Let\'s Get This Show On The Road!'];
-const choiceArray = ['--Choose How Much You Want To Lose Or Gain--', 'Lose 2lbs/Week', 'Lose 1lbs/Week', 'Lose 0.5lbs/Week', 'Maintain Weight', 'Gain 0.5lbs/Week', 'Gain 1lbs/Week', 'Gain 2lbs/Week'];
+const choiceArray = ['--Choose How Much You Want To Lose Or Gain--', 'Lose 2 Pounds/Week', 'Lose 1 Pound/Week', 'Lose 0.5 Pounds/Week', 'Maintain Weight', 'Gain 0.5 Pounds/Week', 'Gain 1 Pound/Week', 'Gain 2 Pounds/Week'];
 
 // Calorie Calculation Variables(These will be used later)
 const maintainWeight = user.weight * 15;
@@ -78,7 +82,7 @@ const gainTwoPounds = maintainWeight + 1000;
 
 // Array Holding Variables Above And Titles For Each Cell 
 const tableArray = [maintainWeight, loseHalf, losePound, loseTwoPounds, gainHalf, gainPound, gainTwoPounds];
-const tableArrayTitles = ['Calories To Maintain Weight', 'Calories To Lose 0.5 Pounds/Week', 'Calories To Lose 1 Pound/Week', 'Calories To Lose 2 Pounds/Week', 'Calories To Gain 0.5 Pounds/Week', 'Calories To Gain 1 Pound/Week', 'Calories To Gain 2 Pounds/Week'];
+const tableArrayTitles = ['Maintain Weight', 'Lose 0.5 Pounds/Week', 'Lose 1 Pound/Week', 'Lose 2 Pounds/Week', 'Gain 0.5 Pounds/Week', 'Gain 1 Pound/Week', 'Gain 2 Pounds/Week'];
 
 // Adding title and button to container, along with changing the position of the p tag
 container.append(title, guideButton);
@@ -116,9 +120,11 @@ function userAdvice() {
             const dropDownChoice = document.createElement('select');
             dropDownChoice.classList.add('select-form');
 
-            // Need to finish up this piece of code
             if(user.goal === 'Lose') {
-                choiceArray.filter()
+                choiceArray.splice(5,3);
+            } else if(user.goal === 'Gain') {
+                choiceArray.splice(1, 3);
+                console.log(choiceArray);
             }
 
             choiceArray.forEach((option, selectIndex) => {
@@ -126,10 +132,17 @@ function userAdvice() {
                 choiceLabel.classList.add(`option-${selectIndex}`);
                 choiceLabel.textContent = option;
 
+
+
                 console.log(choiceLabel);
 
               dropDownChoice.addEventListener('click', () => {
                 guideButton.disabled = false;
+              });
+
+              dropDownChoice.addEventListener('change', function(){
+                chooseGoal = this.value;
+                console.log(chooseGoal);
               });
 
               dropDownChoice.append(choiceLabel);
@@ -140,8 +153,6 @@ function userAdvice() {
                 container.insertBefore(choiceForm, guideButton);
             });
         }
-
-        // Still Working on Code from 136-151 disregard
 
         if (clicks === 5) {
             choiceForm.style.display = 'none';
@@ -203,8 +214,13 @@ function allInfo() {
     let tableData = document.createElement('td');
     tableData.classList.add('cell-data');
 
+    // Need to make cell data = the proper cell title so something like
+    // if(chooseGoal === 'Lose 1 Pound/Week') {
+    //     const tableCell = document.createElement('td');
+    //     ... rest of code
+    //     textContent would have to be the variable storing the math for the calories
+    // }
 
-    // Going to have to fix this code: 210 - 215
     tableArray.forEach((cell, tableIndex) => {
         const tableCell = document.createElement('td');
         tableCell.classList.add(`celldata-${tableIndex += 1}`);
@@ -215,14 +231,25 @@ function allInfo() {
         tableBody.append(tableRow);
     });
 
-    tableArrayTitles.forEach((title, tableTitleIndex) => {
+    // Need to filter out from tableArray, the one that matches the option selected
+
+    if(tableArrayTitles.includes(chooseGoal)) {
         const cellTitle = document.createElement('td');
         cellTitle.classList.add(`celltitle-${tableTitleIndex += 1}`);
-        cellTitle.textContent = title;
-        console.log(cellTitle.classList);
-        tableRow.append(cellTitle)
+        cellTitle.textContent = `Calories To ${chooseGoal}`;
+        tableRow.append(cellTitle);
         tableBody.append(tableRow);
-    });
+
+    }
+
+    // tableArrayTitles.forEach((title, tableTitleIndex) => {
+    //     const cellTitle = document.createElement('td');
+    //     cellTitle.classList.add(`celltitle-${tableTitleIndex += 1}`);
+    //     cellTitle.textContent = title;
+    //     console.log(cellTitle.classList);
+    //     tableRow.append(cellTitle)
+    //     tableBody.append(tableRow);
+    // });
 
     tableHeadRow.append(tableHeadData);
     tableHead.append(tableHeadRow);
