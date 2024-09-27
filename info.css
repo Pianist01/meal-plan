@@ -207,7 +207,7 @@ td {
 .cell-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(7, 1fr) .5fr;
+  grid-template-rows: repeat(2, 1fr) .5fr;
   grid-column-start: 1;
   grid-column-end: 8;
   grid-row-start: 1;
@@ -224,12 +224,34 @@ td {
   grid-row-end: 9;
 }
 
-.celldata-1 {
-  width: 50%;
+.celltitle-0 {
+  color: white;
+  font-weight: bold;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  align-self: center;
+  margin-left: 10%;
+}
+
+.maintain-weight {
+  color: white;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 1;
+  width: 50%;
+  align-self: center;
+  margin-left: 60%;
+}
+
+.celldata-1 {
+  width: 50%;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
   align-self: center;
   color: white;
   margin-left: 60%;
@@ -238,8 +260,8 @@ td {
 .celltitle-1 {
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 2;
   font-weight: bold;
   align-self: center;
   margin-left: 10%;
@@ -271,8 +293,8 @@ td {
 .celldata-3 {
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
   align-self: center;
   color: white;
   margin-left: 60%;
@@ -293,8 +315,8 @@ td {
 .celldata-4 {
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 2;
   align-self: center;
   color: white;
   width: 50%;
@@ -315,8 +337,8 @@ td {
 .celldata-5 {
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 5;
-  grid-row-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 2;
   align-self: center;
   color: white;
   width: 50%;
@@ -337,8 +359,8 @@ td {
 .celldata-6 {
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 6;
-  grid-row-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 2;
   align-self: center;
   color: white;
   width: 50%;
@@ -376,4 +398,25 @@ td {
   align-self: center;
   margin-left: 10%;
   color: white;
+}
+
+/* FOOD RECOMMENDATIONS STYLES START */
+
+.food-header {
+  color: white;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 4;
+  justify-self: center;
+  align-self: center;
+}
+
+.food-container {
+  border: 2px solid white;
+  height: 500px;
+  width: 300px;
+  grid-row-start: 4;
+  grid-column-start: 2;
+  grid-column-end: 3;
 }
