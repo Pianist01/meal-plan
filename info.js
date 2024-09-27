@@ -21,7 +21,7 @@ const guideButton = document.createElement('button');
 guideButton.classList.add('btn-guide');
 guideButton.textContent = 'Next';
 
-// Variables to keep track of clicks, index in arrays, and variable for form
+// Variables to keep track of clicks, index in arrays, and variable for form and to create elements
 let clicks = 0;
 
 let index = 0;
@@ -214,22 +214,81 @@ function allInfo() {
     let tableData = document.createElement('td');
     tableData.classList.add('cell-data');
 
-    // Need to make cell data = the proper cell title so something like
-    // if(chooseGoal === 'Lose 1 Pound/Week') {
-    //     const tableCell = document.createElement('td');
-    //     ... rest of code
-    //     textContent would have to be the variable storing the math for the calories
-    // }
+    const maintainWeightData = document.createElement('td');
+    maintainWeightData.classList.add('maintain-weight');
+    maintainWeightData.textContent = maintainWeight;
+    tableRow.append(maintainWeightData);
+    tableBody.append(tableRow);
 
-    tableArray.forEach((cell, tableIndex) => {
-        const tableCell = document.createElement('td');
-        tableCell.classList.add(`celldata-${tableIndex += 1}`);
-        tableCell.textContent = cell + ' Calories';
+    const maintainWeightTitle = document.createElement('td');
+    maintainWeightTitle.classList.add(`celltitle-0`);
+    maintainWeightTitle.textContent = 'Calories To Maintain Weight';
+    tableBody.classList.add('cell-box');
+    tableRow.append(maintainWeightTitle);
+    tableBody.append(tableRow);
+
+    if(user.goal === 'Gain') {
+        maintainWeightTitle.style.display = 'block';
+    }
+
+
+    if(chooseGoal === 'Lose 1 Pound/Week') {
+        const tableCellOne = document.createElement('td');
+        tableCellOne.classList.add(`celldata-1`);
+        tableCellOne.textContent = losePound;
         tableBody.classList.add('cell-box');
-        console.log(tableCell.classList);
-        tableRow.append(tableCell);
+        console.log(tableCellOne);
+        tableRow.append(tableCellOne);
+        tableBody.append(tableRow)
+    } else if(chooseGoal === 'Lose 0.5 Pounds/Week') {
+        const tableCellTwo = document.createElement('td');
+        tableCellTwo.classList.add(`celldata-2`)
+        tableCellTwo.textContent = loseHalf;
+        tableBody.classList.add('cell-box');
+        tableRow.append(tableCellTwo);
         tableBody.append(tableRow);
-    });
+        console.log(tableCellTwo);
+    } else if(chooseGoal === 'Lose 2 Pounds/Week') {
+        const tableCellThree = document.createElement('td');
+        tableCellThree.classList.add(`celldata-3`)
+        tableCellThree.textContent = loseTwoPounds;
+        tableBody.classList.add('cell-box');
+        tableRow.append(tableCellThree);
+        tableBody.append(tableRow);
+    } else if(chooseGoal === 'Maintain Weight') {
+        maintainWeightData;
+        // maintainWeightTitle.style.display = 'none';
+        maintainWeightTitle.style.gridRowStart = '1';
+        maintainWeightTitle.style.gridRowEnd = '1';
+            if(user.goal === 'Gain') {
+                maintainWeightTitle.style.display = 'block';
+            } else if(user.goal === 'Lose') {
+                maintainWeightTitle.style.display = 'block';
+            }
+    } else if(chooseGoal === 'Gain 0.5 Pounds/Week') {
+        const tableCellFour = document.createElement('td');
+        tableCellFour.classList.add(`celldata-4`);
+        tableCellFour.textContent = gainHalf;
+        tableBody.classList.add('cell-box');
+        tableRow.append(tableCellFour);
+        tableBody.append(tableRow);
+    } else if(chooseGoal === 'Gain 1 Pound/Week') {
+        const tableCellFive = document.createElement('td');
+        tableCellFive.classList.add(`celldata-5`);
+        tableCellFive.textContent = gainPound;
+        tableBody.classList.add('cell-box');
+        tableRow.append(tableCellFive);
+        tableBody.append(tableRow);
+    } else if(chooseGoal === 'Gain 2 Pounds/Week') {
+        const tableCellSix = document.createElement('td');
+        tableCellSix.classList.add(`celldata-6`);
+        tableCellSix.textContent = gainTwoPounds;
+        tableBody.classList.add('cell-box');
+        tableRow.append(tableCellSix);
+        tableBody.append(tableRow);
+    }
+
+    console.log(tableBody);
 
     // Need to filter out from tableArray, the one that matches the option selected
 
@@ -237,19 +296,14 @@ function allInfo() {
         const cellTitle = document.createElement('td');
         cellTitle.classList.add(`celltitle-${tableTitleIndex += 1}`);
         cellTitle.textContent = `Calories To ${chooseGoal}`;
+
+        if(chooseGoal === 'Maintain Weight') {
+            cellTitle.style.display = 'none';
+        }
         tableRow.append(cellTitle);
         tableBody.append(tableRow);
 
     }
-
-    // tableArrayTitles.forEach((title, tableTitleIndex) => {
-    //     const cellTitle = document.createElement('td');
-    //     cellTitle.classList.add(`celltitle-${tableTitleIndex += 1}`);
-    //     cellTitle.textContent = title;
-    //     console.log(cellTitle.classList);
-    //     tableRow.append(cellTitle)
-    //     tableBody.append(tableRow);
-    // });
 
     tableHeadRow.append(tableHeadData);
     tableHead.append(tableHeadRow);
@@ -261,3 +315,15 @@ function allInfo() {
 }
 userAdvice();
 console.log(user);
+
+function foodToEat() {
+    const foodTitle = document.createElement('h2');
+    foodTitle.classList.add('food-header');
+    foodTitle.textContent = 'Here\'s Some Foods You Should Eat!';
+
+    const foodBody = document.createElement('div');
+    foodBody.classList.add('food-container');
+
+    newContainer.append(foodTitle, foodBody);
+}
+foodToEat();
