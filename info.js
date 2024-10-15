@@ -50,6 +50,14 @@ let choiceArrayIndex = 0;
 
 let chooseGoal;
 
+let foodIndex = 0;
+
+let gainFoodLinks;
+
+let linkIndex = 0;
+
+let gainIndex = 0;
+
 // Class Object
 class person {
     constructor(name, weight, height, age, goal) {
@@ -70,6 +78,10 @@ if(user.name === 'Eden' || user.name === 'eden') {
 // Arrays holding strings that will be shown to user, along with choices for users down the line
 const infoArray = ['', `It Seems Like You Want To ${user.goal} Weight ${user.name}`, 'We Can Help You With That!', `But First I Need To Know How Much You Want To ${user.goal}`, 'Choose Your Ideal Goal:', 'Great! Let\'s Get This Show On The Road!'];
 const choiceArray = ['--Choose How Much You Want To Lose Or Gain--', 'Lose 2 Pounds/Week', 'Lose 1 Pound/Week', 'Lose 0.5 Pounds/Week', 'Maintain Weight', 'Gain 0.5 Pounds/Week', 'Gain 1 Pound/Week', 'Gain 2 Pounds/Week'];
+const gainFoodArray = ['Double Double Cheeseburger(610 Calories)', 'Costco Pepperoni Pizza(760 Calories)', 'McDonalds Combo Meal(1200 Calories)', 'Wingstop 10 Piece Meal(1700 Calories)'];
+const loseFoodArray = ['Chicken With Potatoes(500 Calories)', 'Ground Turkey With Potatoes(650 Calories)', 'Chicken Salad(400 Calories)', 'Eggs With Chicken(550 Calories)'];
+const gainFoodLinksArray = ['https://www.in-n-out.com/menu#doubledouble', 'https://www.costcobusinessdelivery.com/kirkland-signature-pepperoni-pizza%2C-thin-crust%2C-4-ct.product.100264489.html', 'https://www.mcdonalds.com/us/en-us/meal/5-dollar-mcdouble-meal.html', 'https://www.wingstop.com/menu'];
+const loseFoodLinksArray = ['https://urbanplates.com/order/item/?store_id=009&service_type_id=2&menu_id=42&category_id=16&item_id=500&category_name=Plates', 'https://shop.sprouts.com/search?search_term=turkey', 'https://urbanplates.com/order/item/?store_id=009&service_type_id=2&menu_id=42&category_id=17&item_id=443&category_name=Salads', 'https://www.yummytummyaarthi.com/chicken-egg-scramble-recipe/'];
 
 // Calorie Calculation Variables(These will be used later)
 const maintainWeight = user.weight * 15;
@@ -321,9 +333,34 @@ function foodToEat() {
     foodTitle.classList.add('food-header');
     foodTitle.textContent = 'Here\'s Some Foods You Should Eat!';
 
+    const foodSection = document.createElement('section');
+    foodSection.classList.add('foodcontent-box');
+
     const foodBody = document.createElement('div');
     foodBody.classList.add('food-container');
 
-    newContainer.append(foodTitle, foodBody);
+    if(user.goal === 'Gain') {
+
+            gainFoodArray.forEach((food) => {
+                const gainFoodInfo = document.createElement('p');
+                gainFoodInfo.classList.add(`foodphrase-${foodIndex += 1}`);
+                gainFoodInfo.textContent = food;
+                foodBody.append(gainFoodInfo);
+                console.log(gainFoodInfo);
+            });
+
+    } else if(user.goal === 'Lose') {
+        loseFoodArray.forEach((food) => {
+            const loseFoodInfo = document.createElement('p');
+            loseFoodInfo.classList.add(`losefoodphrase-${foodIndex += 1}`);
+            loseFoodInfo.textContent = food;
+            foodBody.append(loseFoodInfo);
+            console.log(loseFoodInfo);
+        });
+    }
+
+    foodSection.append(foodBody);
+
+    newContainer.append(foodTitle, foodSection);
 }
 foodToEat();
