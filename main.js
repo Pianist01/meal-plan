@@ -37,7 +37,7 @@ function displayScreen() {
         // Making input field visible again along with changing button class and its text
         inputs.style.display = 'block';
         
-        button.classList.remove('.btn-start');
+        button.classList.remove('btn-start');
         button.classList.add('btn-submit');
         button.textContent = 'Submit';
 
@@ -57,6 +57,8 @@ function displayScreen() {
             let dataString = JSON.stringify(personData);
             localStorage.setItem('personData', dataString);
             window.location.href = 'info.html';
+
+            return;
         }
 
         // Going through each array element in inputIndex after each click
