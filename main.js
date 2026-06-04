@@ -23,7 +23,7 @@ let personData = [];
 // Arrays holding questions for users, and placeholders for input fields
 const promptList = ['', 'What\'s Your Name?', 'How Much Do You Weigh?', 'How Tall Are You?', 'How Old Are You?', 'Want To Gain Or Lose Weight?'];
 
-const inputText = ['', 'Papasote', '420lbs', '4\'9', '69', 'Lose/Gain'];
+const inputText = ['', 'Edgar', '180lbs', '4\'9', '20', 'Lose/Gain'];
 
 
 function displayScreen() {
