@@ -157,8 +157,9 @@ button {
 .new-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr repeat(3, 2fr);
-  height: 100vh;
+  grid-template-rows: 1fr repeat(3, 2fr) auto;
+  height: auto;
+  min-height: 100vh;
   width: 100%;
 }
 
@@ -426,7 +427,8 @@ td {
 .food-container {
   border: none;
   border-radius: 15px;
-  height: 500px;
+  height: auto;
+  min-height: 500px;
   margin-bottom: 20px;
   background: linear-gradient(89.7deg, rgb(0, 0, 0) -10.7%, rgb(53, 92, 125) 88.8%);
   box-shadow: -5px 3px 10px white;
