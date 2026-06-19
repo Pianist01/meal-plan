@@ -1,4 +1,4 @@
-# meal-plan
+# Meal Plan
 
 This project is meant to a be a simple version of calorie calculator. After asking the user a series of questions regarding their name, age, weight, height, and what they want to achieve weight-wise, a new page is created organizing the data. Their own meal plan is created along with displaying the the calories needed to achieve their goal. In addition to this, it also gives a reccomendation of foods the user can eat in order to achieve their goal.
 
